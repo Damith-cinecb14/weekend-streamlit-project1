@@ -26,6 +26,7 @@ with col2:
 if context and question and submit_btn:
     with st.spinner("Answering your questions........"):
         result = qa_model(question=question,context=context)
+        st.success(result['answer'])
         st.metric(result['score'])
         st.metric("Confidence Score", round(result["score"], 3))
 
