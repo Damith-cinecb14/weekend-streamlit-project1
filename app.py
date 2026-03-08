@@ -18,9 +18,11 @@ st.title("AI Powered Question and Answering webApp")
 col0, col1, col2 = st.columns([2,1,1])
 
 with col0:
-    with st.expander("Information"):
-        st.write("Web URL:")
-        st.markdown("https://damith-app.streamlit.app/")
+    if "answer" :
+        search_query = ["answer"]
+        google_url = f"https://www.google.com/search?q={search_query}"
+
+        st.markdown(f"[Search this answer on Google]({google_url})")
 
 with col1:
     context = st.text_area("Text area for context",
