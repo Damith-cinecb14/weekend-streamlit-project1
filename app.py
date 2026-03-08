@@ -1,5 +1,6 @@
 import  streamlit as st
 from transformers import pipeline
+import urllib.parse
 
 st.set_page_config(page_title="AI Question and Answering app")
 
@@ -7,6 +8,7 @@ st.set_page_config(page_title="AI Question and Answering app")
 def load_model():
     return pipeline(
         task="question-answering",
+
         model="timpal0l/mdeberta-v3-base-squad2"
     )
 
@@ -17,12 +19,7 @@ st.title("AI Powered Question and Answering webApp")
 
 col0, col1, col2 = st.columns([2,1,1])
 
-with col0:
-    if "answer" :
-        search_query = ["answer"]
-        google_url = f"https://www.google.com/search?q={search_query}"
 
-        st.markdown(f"[Search this answer on Google]({google_url})")
 
 with col1:
     context = st.text_area("Text area for context",
@@ -30,6 +27,13 @@ with col1:
     question = st.text_area("Text area for question", height=150,placeholder="Ask your question here")
     submit_btn = st.button("Ask Question", type="primary")
 
+with col0:
+    if question:
+        query = urllib.parse.quote(question)
+        google_url = f"https://www.google.com/search?q={query}"
+
+        st.markdown("### 🔎 Search Context")
+        st.markdown(f"[Search on Google]({google_url})")
 
 
 with col2:
