@@ -15,7 +15,7 @@ qa_model = load_model()
 
 st.title("AI Powered Question and Answering webApp")
 
-col0, col1, col2 = st.columns([2,1])
+col0, col1, col2 = st.columns([2,1,1])
 
 with col0:
     with st.expander("Information"):
