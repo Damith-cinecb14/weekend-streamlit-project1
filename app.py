@@ -15,13 +15,20 @@ qa_model = load_model()
 
 st.title("AI Powered Question and Answering webApp")
 
-col1, col2 = st.columns([2,1])
+col0, col1, col2 = st.columns([2,1])
+
+with col0:
+    with st.expander("Information"):
+        st.write("Web URL:")
+        st.markdown("https://damith-app.streamlit.app/")
 
 with col1:
     context = st.text_area("Text area for context",
                            height=150, placeholder="Enter Context here....")
     question = st.text_area("Text area for question", height=150,placeholder="Ask your question here")
     submit_btn = st.button("Ask Question", type="primary")
+
+
 
 with col2:
     st.markdown("Powered by C-Clarke Institute students")
