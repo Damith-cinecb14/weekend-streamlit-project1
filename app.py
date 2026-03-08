@@ -5,7 +5,11 @@ st.set_page_config(page_title="AI Question and Answering app")
 
 @st.cache_resource
 def load_model():
-    return pipeline("question-answering", "timpal0l/mdeberta-v3-base-squad2")
+    return pipeline(
+        task="question-answering",
+        model="timpal0l/mdeberta-v3-base-squad2"
+    )
+
 
 qa_model = load_model()
 
@@ -26,7 +30,8 @@ if context and question and submit_btn:
     with st.spinner("Answering your questions........"):
         result = qa_model(question=question,context=context)
         st.success(result['answer'])
-        st.metric(result['score'])
+        st.metric("Confidence Score", round(result["score"], 3))
+
 
 else:
     st.markdown("invalid Input....")
